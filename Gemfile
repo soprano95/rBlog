@@ -35,6 +35,9 @@ gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'mail_form'
 gem 'simple_form'
 gem 'will_paginate', '~> 3.1.0'
+gem "paperclip", "~> 5.0.0"
+gem "wysiwyg-rails"
+gem "font-awesome-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
