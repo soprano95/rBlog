@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
   get 'contact' => 'contacts#new'
-
   get 'contacts/create'
-
   get 'about' => 'about#index'
 
   namespace :admin do
-    get 'session/new'
+    get "login" => "sessions#new", :as => "/admin/login"
   end
 
   namespace :admin do
@@ -109,11 +107,15 @@ Rails.application.routes.draw do
 
   get 'posts/show'
 
-  resources :posts, :categories, :comments
+  resources :posts, :categories
   resources "contacts", only: [:new, :create]
 
   namespace :admin do
-   resources :posts, :categories, :comments, :users
+   resources :posts, :categories, :comments, :users, :sessions
+  end
+
+  resources :posts do 
+    resources :comments
   end
 
   root 'posts#index'

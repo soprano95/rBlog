@@ -1,49 +1,23 @@
-<div class="row">
-                <div class="col-md-6">
-                  <div class="post">
-                    <img src="img/IMG_2539.JPG">
-                    <div class="post-content">
-                    <h3>Lorem Ipsum</h3>
-                    <small>Posté par soprano 14 novembre 2016</small>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque lorem, ornare blandit varius sed, ultricies nec nibh. Duis hendrerit convallis augue. Cras laoreet elit sit amet mi sodales feugiat. Duis rutrum elit nunc, ut vestibulum erat varius mollis. Mauris eget accumsan neque. Fusce tincidunt turpis dignissim justo elementum, sed malesuada ante porta.</p>
-                      <a href="" class="btn btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="post">
-                    <img src="img/IMG_2539.JPG">
-                    <div class="post-content">
-                    <h3>Lorem Ipsum</h3>
-                    <small>Posté par soprano 14 novembre 2016</small>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque lorem, ornare blandit varius sed, ultricies nec nibh. Duis hendrerit convallis augue. Cras laoreet elit sit amet mi sodales feugiat. Duis rutrum elit nunc, ut vestibulum erat varius mollis. Mauris eget accumsan neque. Fusce tincidunt turpis dignissim justo elementum, sed malesuada ante porta.</p>
-                      <a href="" class="btn btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                </div>
+<div id="posts-index">
+  <% if @posts.exists? %>
+    <% @posts.each_slice(2) do |post| %>
+      <div class="row">
+        <% post.each do |post| %>
+          <div class="col-md-6">
+            <div class="post">
+              <%= image_tag post.image.url,width:'100%' %>
+              <div class="post-content">
+                <h3><%= post.title%></h3>
+                <small>Posted by <%= post.user.name %> on <%= post.created_at.to_time.strfitime('%B %e at %l:%M %p') %></small>
+                <%= raw post.body.truncate(200) %>
+                <%= link_to "Read More", post_path(post), class:'btn btn-primary' %>
               </div>
-
-               <div class="row">
-                <div class="col-md-6">
-                  <div class="post">
-                    <img src="img/IMG_2539.JPG">
-                    <div class="post-content">
-                    <h3>Lorem Ipsum</h3>
-                    <small>Posté par soprano 14 novembre 2016</small>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque lorem, ornare blandit varius sed, ultricies nec nibh. Duis hendrerit convallis augue. Cras laoreet elit sit amet mi sodales feugiat. Duis rutrum elit nunc, ut vestibulum erat varius mollis. Mauris eget accumsan neque. Fusce tincidunt turpis dignissim justo elementum, sed malesuada ante porta.</p>
-                      <a href="" class="btn btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="post">
-                    <img src="img/IMG_2539.JPG">
-                    <div class="post-content">
-                    <h3>Lorem Ipsum</h3>
-                    <small>Posté par soprano 14 novembre 2016</small>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque lorem, ornare blandit varius sed, ultricies nec nibh. Duis hendrerit convallis augue. Cras laoreet elit sit amet mi sodales feugiat. Duis rutrum elit nunc, ut vestibulum erat varius mollis. Mauris eget accumsan neque. Fusce tincidunt turpis dignissim justo elementum, sed malesuada ante porta.</p>
-                      <a href="" class="btn btn btn-primary btn-block">Read More</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </div>
+          </div>
+          <% end %>
+      </div>
+      <% end %>
+  <% else %>
+  <p>No posts yet</p>
+  <% end %>
+</div>
