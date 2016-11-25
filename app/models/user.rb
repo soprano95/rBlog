@@ -9,9 +9,9 @@ class User < ApplicationRecord
 	validates :password, presence: true
 	validates :password, confirmation: true
 
-	def self.authentication(email, password)
+	def self.authenticate(email, password)
 		user = find_by_email(email)
-		if user && user_password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+		if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
 			user
 		else 
 			nil
@@ -20,8 +20,8 @@ class User < ApplicationRecord
 
 	def encrypt_password
 		if password.present?
-		  self.passeword_salt = BCrypt::Engine.generate_salt
-		  self.passeword_hash = BCrypt::Engine.hash_secret(password, passeword_salt)
+		  self.password_salt = BCrypt::Engine.generate_salt
+		  self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
 		end
 	end
 

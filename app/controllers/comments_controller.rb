@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 
   	flash[:notice] ='comment Added'
 
-  	redirect_to post_paht(@post)
+  	redirect_to post_path(@post)
   end
 
   private

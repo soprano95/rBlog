@@ -2,9 +2,15 @@ Rails.application.routes.draw do
   get 'contact' => 'contacts#new'
   get 'contacts/create'
   get 'about' => 'about#index'
+   get '/login/html'
+
 
   namespace :admin do
-    get "login" => "sessions#new", :as => "/admin/login"
+    get "login" => "sessions#new" , :as => "login"
+  end
+
+  namespace :admin do
+    get "logout" => "sessions#destroy" , :as => "logout"
   end
 
   namespace :admin do
