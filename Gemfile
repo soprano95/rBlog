@@ -45,6 +45,13 @@ gem "font-awesome-rails"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  # Déploiement
+  gem 'capistrano', '~> 3.10.1'
+  gem 'capistrano-rails', '~> 1.3.1'
+  gem 'capistrano-rvm', '~> 0.1.2'
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+
 end
 
 group :development do
